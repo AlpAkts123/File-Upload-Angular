@@ -31,11 +31,11 @@ export class FileuploadComponent {
           
           const formData = new FormData()
           formData.set(file.name, file, droppedFile.relativePath)
-          console.log(formData)
+          console.log(formData.get(file.name))
           debugger;
           var json=JSON.stringify(formData);
           console.log("sadsad")
-          this.htpp.post(`https://localhost:7083/api/Forms/uploadCv?Id=84DCD8C6-7F11-410A-A9ED-E2831A1282AD`, formData, {headers:new HttpHeaders().set('responseType', 'blob')})
+          this.htpp.post(`https://localhost:7083/api/Forms/uploadCv?Id=84DCD8C6-7F11-410A-A9ED-E2831A1282AD`, formData.get(file.name), {headers:new HttpHeaders().set('responseType', 'blob').append('Accept', 'application/json')})
           .subscribe(data => {
             debugger
           },er=>{
