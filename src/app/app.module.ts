@@ -8,11 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxFileDropModule } from 'ngx-file-drop';
-import { FileuploadComponent } from './fileupload/fileupload.component';
+import { ToastrModule } from 'ngx-toastr';
+import { EducationPipe } from './services/pipes/education.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    FileuploadComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -20,6 +21,7 @@ import { FileuploadComponent } from './fileupload/fileupload.component';
     UiModule,
     HttpClientModule,
     AdminModule,
+    ToastrModule.forRoot(),
     ReactiveFormsModule,
     NgxFileDropModule,
     FormsModule,

@@ -1,1 +1,125 @@
-<p>forms works!</p>
+<div class="container">
+    <div class="row">
+
+        <div class="col md-2">
+            <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Ana Departman</mat-label>
+                <mat-select #maindep>
+                    <mat-option [value]="true">
+                        İdari
+                    </mat-option>
+                    <mat-option [value]="false">
+                        Mavi Yaka
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Departman</mat-label>
+                <mat-select #department>
+                    <mat-option *ngFor="let item of selectboxes.departments|keyvalue" [value]="item.key">
+                        {{item.value}}
+                    </mat-option>
+
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Askerlik</mat-label>
+                <mat-select #milStatus>
+                    <mat-option *ngFor="let item of selectboxes.milServiceStatus|keyvalue" [value]="item.key">
+                        {{item.value}}
+                    </mat-option>
+
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Şu Tarihten Sonrası</mat-label>
+                <input type="date" matInput value="Sushi" #after>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Şu Tarihten Öncesi</mat-label>
+                <input type="date" matInput value="Sushi" #before>
+            </mat-form-field>
+            <div class="row"><button mat-raised-button color="primary"
+                (click)="getFilteredData(maindep,department,milStatus,after,before)">Filtrele</button></div>
+            
+
+
+        </div>
+    </div>
+
+
+        <div class="col-md-9">
+            <div style="position: relative;">
+
+                <mat-form-field>
+                    <mat-label>Ara</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" type="text" #input>
+                </mat-form-field>
+
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" matSort class="table table-striped">
+
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ad Soyad </th>
+                            <td mat-cell *matCellDef="let row"> {{row.name+" "+row.surname}} </td>
+                        </ng-container>
+
+                        <!-- Progress Column -->
+                        <ng-container matColumnDef="birthday">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Doğum Günü </th>
+                            <td mat-cell *matCellDef="let row"> {{row.birthDay|date}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="gender">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cinsiyet</th>
+                            <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="militaryServiceDelayTime">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Askerlik Tecil Tarihi </th>
+                            <td mat-cell *matCellDef="let row"> {{row.militaryServiceDelayTime|date}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="whiteCollar">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Başvurulan Ana Birim</th>
+                            <td mat-cell *matCellDef="let row">{{row.whiteCollar}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="departmentName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Başvurulan Birim</th>
+                            <td mat-cell *matCellDef="let row">{{row.departmentName}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="educationState">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Eğitim durumu</th>
+                            <td mat-cell *matCellDef="let row">{{row.educationstring}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="departmenAppliedFor">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Başvurulan Departman </th>
+                            <td mat-cell *matCellDef="let row">{{row.departmentName}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="cv">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cv Adresi </th>
+                            <td mat-cell *matCellDef="let row">
+                                <div style="display: inline-block;" *ngFor="let  file of row.files"> <button
+                                        class="btn btn-success" *ngIf="file.path"><a [id]="file.path" class="download"
+                                            (click)="download(file.path)" download>{{file.fileName}}</a></button></div>
+                            </td>
+                        </ng-container>
+
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                        </tr>
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

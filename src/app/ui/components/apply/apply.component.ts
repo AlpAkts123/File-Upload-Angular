@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { AddApplyFormModel } from 'src/app/models/add-apply-model';
 import { CreateApplyResponseModel } from 'src/app/models/create-apply-form-response-model';
+import { GetSelectBoxModel } from 'src/app/models/get-selectbox-model';
+import { environment } from 'src/environments/environment';
 interface Food {
   value: number;
   viewValue: string;
@@ -24,6 +26,8 @@ export class ApplyComponent implements OnInit {
 
 
   ];
+  selectboxes:GetSelectBoxModel=new GetSelectBoxModel();
+
 
    formData:FormData =new FormData();
   startDate = new Date(1930, 0, 1);
@@ -36,6 +40,7 @@ export class ApplyComponent implements OnInit {
   }
   ngOnInit(): void {
     this.createApplyForm();
+    this.getSelectBox();
   
   }
   createApplyForm(){
@@ -45,6 +50,7 @@ export class ApplyComponent implements OnInit {
     phone:["",Validators.required],
     email:["",Validators.required],
     driverLicense:["",Validators.required],
+    departmentId:["",Validators.required],
     educationState:["",Validators.required],
     experiences:["",Validators.required],
     birthday:["",Validators.required],
@@ -64,10 +70,10 @@ export class ApplyComponent implements OnInit {
     this.httpClient.post<CreateApplyResponseModel>("https://localhost:7083/api/Forms",this.ApplyModel,)
     .subscribe(data => {
       debugger;
-      this.httpClient.post(`https://localhost:7052/api/?Id=${data.id}`, this.formData, {headers:new HttpHeaders().set("responseType","blob")})
+      this.httpClient.post(`https://localhost:7083/api/Forms/uploadCv?Id=${data.id}`, this.formData, {headers:new HttpHeaders().set("responseType","blob")})
       .subscribe(data => {
         debugger;
-        // Sanitized logo returned from backend
+        
       })
      console.log(data)
     },error=>{
@@ -76,10 +82,19 @@ export class ApplyComponent implements OnInit {
     })
     
   }
+  getSelectBox() {
+    this.httpClient.get<string>(environment.getApiUrl + "/SelectBoxes").subscribe(response => {
+      Object.assign(this.selectboxes, response)
+      
+      console.log(this.selectboxes.milServiceStatus)
+    }, error => {
+
+      this.getSelectBox();
+    })
 
 
 
-
+  }
 
 
 
