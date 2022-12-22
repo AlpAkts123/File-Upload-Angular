@@ -13,18 +13,23 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './components/login/login.component';
+import { PipesModule } from '../services/pipes/pipes.module';
+import { FormDetailComponent } from './components/forms/form-detail/form-detail.component';
+import { QrComponent } from './components/qr/qr.component';
 
 
 
 const routes:Routes = [{ path: "", component: DashboardComponent },
-{ path: "users", component: UsersComponent }, { path: "forms", component: FormsComponent },
+{ path: "users", component: UsersComponent }, { path: "forms", component: FormsComponent },{ path: "forms/detail/:id", component: FormDetailComponent },
 { path: "login", component: LoginComponent }]
 @NgModule({
   declarations: [
     AdminComponent,
     FormsComponent,
     UsersComponent,
-    DashboardComponent
+    DashboardComponent,
+    FormDetailComponent,
+    QrComponent
 
   ],
   imports: [
@@ -36,6 +41,7 @@ const routes:Routes = [{ path: "", component: DashboardComponent },
     MatFormFieldModule,
     MatPaginatorModule,
     MatSelectModule,
+    PipesModule,
     RouterModule.forChild(routes),
   ],
    exports: [AdminComponent,

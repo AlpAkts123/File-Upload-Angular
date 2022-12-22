@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSelect } from '@angular/material/select';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DynamicQueryModel, Filter } from 'src/app/models/dynamicQueryModels/dynamicQueryModel';
@@ -60,17 +61,19 @@ constructor(private httpService:HttpClient,private toastr:NotificationService) {
       }, 2500);
     })
   }
-  getFilteredData(maindep,dep,edState,after,before){
-    debugger;
+  getFilteredData(maindep:MatSelect,dep,edState,after,before){
     this.dynamicQuery.dynamic.sort.push({dir:"asc",field:"createdAt"})
+    debugger
+
     if (maindep.value!="") {
       this.dynamicQuery.dynamic.filter.field="whiteCollar"
       this.dynamicQuery.dynamic.filter.logic="and"
       this.dynamicQuery.dynamic.filter.operator="eq"
-      this.dynamicQuery.dynamic.filter.value=maindep.value.toString()
+      this.dynamicQuery.dynamic.filter.value=maindep.value
+      debugger
       
     }
-    if (dep.value!="") {
+    if (dep.value!=""&&dep.value!=undefined) {
       
       this.dynamicQuery.dynamic.filter.filters.push({field:"departmentName",logic:"and",value:dep.value,operator:"eq"})
       
@@ -88,8 +91,9 @@ constructor(private httpService:HttpClient,private toastr:NotificationService) {
       
     }
     let sending=JSON.stringify(this.dynamicQuery);
-    console.log(this.Forms)
+      console.log(this.Forms)
     this.httpService.post<GetAllFormsModel>(environment.getApiUrl+"/Forms/GetListByDynamic",this.dynamicQuery).subscribe(response=>{
+      debugger;
       Object.assign(this.Forms,response)
       console.log(this.Forms)
       this.dataSource = new MatTableDataSource<ApplyForm>(this.Forms.applyForms);

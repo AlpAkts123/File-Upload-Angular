@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EducationPipe } from './education.pipe';
+import { GenderPipe } from './gender.pipe';
+import { WhitecollarPipe } from './whitecollar.pipe';
 
 
 
 @NgModule({
-  declarations: [EducationPipe],
+  declarations: [GenderPipe, WhitecollarPipe],
   imports: [
     CommonModule,
     
-  ],exports:[EducationPipe]
+  ],exports:[GenderPipe, WhitecollarPipe]
 })
 export class PipesModule { }
