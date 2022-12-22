@@ -12,11 +12,13 @@ import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { LoginComponent } from './components/login/login.component';
 
 
 
 const routes:Routes = [{ path: "", component: DashboardComponent },
-{ path: "users", component: UsersComponent }, { path: "forms", component: FormsComponent }]
+{ path: "users", component: UsersComponent }, { path: "forms", component: FormsComponent },
+{ path: "login", component: LoginComponent }]
 @NgModule({
   declarations: [
     AdminComponent,

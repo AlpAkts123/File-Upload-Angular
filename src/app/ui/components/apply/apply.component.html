@@ -1,5 +1,6 @@
 <body>
-
+  
+  <div  class="row headlabel" align="center"><h1> Başvur</h1></div>
   <br>
   <br>
   <div class="container">
@@ -50,6 +51,18 @@
               </mat-select>
             </mat-form-field>
           </div>
+          <div class="col md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Departman</mat-label>
+              <mat-select formControlName="departmentId">
+                <mat-option *ngFor="let item of selectboxes.departments|keyvalue" [value]="item.key">
+                  {{item.value}}
+                </mat-option>
+                
+               
+              </mat-select>
+            </mat-form-field>
+          </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline">
               <mat-label>Askerlik Tecil Tarihi</mat-label>
@@ -93,7 +106,7 @@
             <textarea formControlName="experiences" matInput></textarea>
           </mat-form-field>
           <div class="center">
-            <ngx-file-drop style="color: black;" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+            <ngx-file-drop accept=".pdf" style="color: black;" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
               (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
               <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
                 <p style="color: black;"> Yüklemek İstediğiniz CV'yi Seçiniz(Opsiyonel)</p>
@@ -114,9 +127,8 @@
                 </tbody>
               </table>
             </div>
+            <div class="row"><button class="btn btn-success" (click)="submit()"> Başvur</button></div>
           </div>
-          <div class="row"><button class="btn btn-success" (click)="submit()"> Başvur</button></div>
-
         </div>
       </div>
     </form>

@@ -20,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
     UiModule,
     HttpClientModule,
     AdminModule,
+    ToastrModule.forRoot(),
     ReactiveFormsModule,
     NgxFileDropModule,
     FormsModule,

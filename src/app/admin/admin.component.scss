@@ -38,21 +38,9 @@
     overflow-y: hidden;
   }
 
-  .nav-scroller .nav {
-    display: flex;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    margin-top: -1px;
-    overflow-x: auto;
-    text-align: center;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-  }
-  /* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-
-main > .container {
-    padding: 60px 15px 0;
-  }
-  
+    nav ul li{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgb(239, 239, 241);
+    }
