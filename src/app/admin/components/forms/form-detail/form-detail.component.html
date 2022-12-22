@@ -33,8 +33,21 @@
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
                                 <div class="mt-3">
-
-
+                                    <h4>Başvuru Durumu Güncelle</h4>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Form Durumu</mat-label>
+                                        <mat-select #value>
+                                          <mat-option *ngFor="let item of selectboxes.formStatus|keyvalue"  [value]="item.key">
+                                            {{item.value}}
+                                          </mat-option>
+                                         
+                                        </mat-select>
+                                       
+                                      </mat-form-field>
+                                      <div class="row">
+                                      <button class="btn btn-primary" (click)="UpdateStatus(value)"> Güncelle</button>
+                                       
+                                      </div>
                                 </div>
                             </div>
                         </div>

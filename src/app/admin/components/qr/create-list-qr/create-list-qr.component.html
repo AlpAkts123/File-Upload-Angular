@@ -9,98 +9,97 @@
                             <li class="nav-item">
                                 <a href="javascript:void();" data-target="#profile" data-toggle="pill"
                                     class="nav-link active show"><i class="icon-user"></i> <span
-                                        class="hidden-xs">Profile</span></a>
+                                        class="hidden-xs">Qr Listesi</span></a>
                             </li>
-                            <li class="nav-item">
-                                <a href="javascript:void();" data-target="#messages" data-toggle="pill"
-                                    class="nav-link"><i class="icon-envelope-open"></i> <span
-                                        class="hidden-xs">Messages</span></a>
-                            </li>
+                           
                             <li class="nav-item">
                                 <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i
-                                        class="icon-note"></i> <span class="hidden-xs">Edit</span></a>
+                                        class="icon-note"></i> <span class="hidden-xs">Qr Ekle</span></a>
                             </li>
                         </ul>
                         <div class="tab-content p-3">
                             <div class="tab-pane active show" id="profile">
                                 <div class="row" align="center"> <h2>Qr Liste</h2></div>
-                                
+                                <div class="mat-elevation-z8">
+                                    <mat-form-field appearance="outline">
+                                      <mat-label>Ara</mat-label>
+                                      <input matInput (keyup)="applyFilter($event)" #input>
+                                    </mat-form-field>
+                                    <table mat-table [dataSource]="dataSource" matSort>
+                                  
+                                     
+                                      <ng-container matColumnDef="qrAddress">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Site</th>
+                                        <td mat-cell *matCellDef="let row"> {{row.qrAddress}} </td>
+                                      </ng-container>
+                                  
+                                      <!-- Progress Column -->
+                                      <ng-container matColumnDef="city">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Şehir </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.city}} </td>
+                                      </ng-container>
+                                      <ng-container matColumnDef="Country">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Oluşturulduğu Tarih </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.createdAt|date:"dd/M/YY HH:mm"}} </td>
+                                      </ng-container>
+                                  
+                                      <!-- Name Column -->
+                                     
+                                     
+                                      <ng-container matColumnDef="detail">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Detay </th>
+                                        <td mat-cell *matCellDef="let row"><a ><img [routerLink]="'/admin/qr/detail/'+row.id" height="25px" width="25px" src="./assets/loupe.png" style="cursor: pointer;" alt=""></a></td>
+                                      </ng-container>
+                                  
+                                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                  
+                                      <!-- Row shown when there is no matching data. -->
+                                      <tr class="mat-row" *matNoDataRow>
+                                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                                      </tr>
+                                    </table>
+                                  
+                                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+                                  </div>
                                
                                 <!--/row-->
                             </div>
-                            <div class="tab-pane" id="messages">
-                                <div class="alert alert-info alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <div class="alert-icon">
-                                        <i class="icon-info"></i>
-                                    </div>
-                                    <div class="alert-message">
-                                        <span><strong>Info!</strong> Lorem Ipsum is simply dummy text.</span>
-                                    </div>
-                                </div>
-                                <table class="table table-hover table-striped">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <span class="float-right font-weight-bold">3 hrs ago</span> Here is your
-                                                a link to the latest summary report from the..
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="float-right font-weight-bold">Yesterday</span> There has
-                                                been a request on your account since that was..
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="float-right font-weight-bold">9/10</span> Porttitor vitae
-                                                ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus.
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="float-right font-weight-bold">9/4</span> Vestibulum
-                                                tincidunt ullamcorper eros eget luctus.
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="float-right font-weight-bold">9/4</span> Maxamillion ais
-                                                the fix for tibulum tincidunt ullamcorper eros.
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            
                             <div class="tab-pane" id="edit">
                                 <div align="center" class="row"><h2>QR Ekle</h2></div>
                                 <form>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Site Adresi</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="text" placeholder="www.ornek.com">
+                                            <input class="form-control" type="text" placeholder="www.ornek.com" #qr>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Adres</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="text" placeholder="ornek mah/ornek cad">
+                                            <input class="form-control" type="text" placeholder="ornek mah/ornek cad" #adres>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label"> Ülke</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="email" placeholder="Türkiye">
+                                            <input class="form-control" type="text" placeholder="Türkiye" #country>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Şehir</label>
                                         <div class="col-lg-9">
-                                            <input class="form-control" type="email" placeholder="Adana">
+                                            <input class="form-control" type="text" placeholder="Adana" #city>
                                         </div>
                                     </div>
-                                    
+                                    <div  class="row" align="center" >
+                                        
+                                       
+                                    <button (click)="addQr(qr,adres,country,city)" class="btn btn-primary">Ekle</button>
+
+
+                                    </div>
                                     
                                 </form>
                             </div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-qr',
@@ -7,9 +8,10 @@ import { Component } from '@angular/core';
 })
 export class QrComponent {
    myAngularxQrCode: string = null;
+  
 
-  constructor () {
-    // assign a value
-    this.myAngularxQrCode = 'NABER MİNİK KIZ';
-  }
+  constructor (private router:ActivatedRoute) {
+    
+    this.myAngularxQrCode = this.router.snapshot.paramMap.get("id");
+}
 }

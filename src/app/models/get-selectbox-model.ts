@@ -1,3 +1,5 @@
+
+
 export class milServiceStatus {
     [key: number]: string
 
@@ -7,7 +9,9 @@ export class milServiceStatus {
 
 
 }
-
+export class FormStatus {
+    [key: number]: string;
+}
 export class educationState {
     [key: number]: string;}
 
@@ -15,4 +19,5 @@ export class GetSelectBoxModel{
     milServiceStatus:milServiceStatus=new milServiceStatus();
     departments:departments=new departments();
     educationState:educationState=new educationState();
+    formStatus:FormStatus=new FormStatus();
 }

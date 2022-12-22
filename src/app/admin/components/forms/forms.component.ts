@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DynamicQueryModel, Filter } from 'src/app/models/dynamicQueryModels/dynamicQueryModel';
 import { ApplyForm, GetAllFormsModel } from 'src/app/models/get-forms-model';
-import { getSelectBoxesModel } from 'src/app/models/selectboxes/get-select-box-model';
+import { GetSelectBoxModel } from 'src/app/models/get-selectbox-model';
 import { NotificationService, ToastrMessageType, ToastrPosition } from 'src/app/services/notification.service';
 import { environment } from 'src/environments/environment';
 
@@ -20,7 +20,7 @@ export class FormsComponent {
   Forms:GetAllFormsModel=new GetAllFormsModel();
   dataSource: MatTableDataSource<ApplyForm>;
   dynamicQuery:DynamicQueryModel=new DynamicQueryModel();
-  selectboxes:getSelectBoxesModel=new getSelectBoxesModel();
+  selectboxes:GetSelectBoxModel=new GetSelectBoxModel();
   @ViewChild (MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -50,7 +50,7 @@ constructor(private httpService:HttpClient,private toastr:NotificationService) {
     }
   }
   getSelectBoxes(){
-    this.httpService.get<getSelectBoxesModel>(environment.getApiUrl+"/SelectBoxes").subscribe(response=>{
+    this.httpService.get<GetSelectBoxModel>(environment.getApiUrl+"/SelectBoxes").subscribe(response=>{
       Object.assign(this.selectboxes,response)
       console.log(response.departments)
     },error=>{
