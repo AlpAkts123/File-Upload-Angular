@@ -64,9 +64,11 @@ export class ApplyComponent implements OnInit {
   async submit(){
     Object.assign(this.ApplyModel,this.applyForm.value);
     this.ApplyModel.cvFiles=this.formData;
-    debugger
     var sending=JSON.stringify(this.ApplyModel)
+    this.ApplyModel.educationState=Number.parseInt(this.ApplyModel.educationState.toString())
+    
     var result=JSON.parse(sending);
+    debugger;
     this.httpClient.post<CreateApplyResponseModel>("https://localhost:7083/api/Forms",this.ApplyModel,)
     .subscribe(data => {
       debugger;

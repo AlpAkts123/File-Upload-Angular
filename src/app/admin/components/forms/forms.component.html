@@ -39,7 +39,7 @@
 
     </div>
     <div class="col-md-2">
-    <img src="./assets/refresh.png" height="25px" width="25px" (click)="getForms()" alt="">
+    <img src="./assets/refresh.png" height="25px" width="25px" (click)="getForms()"  style="cursor: pointer;" alt="">
 
     </div>
     </div>
@@ -47,13 +47,13 @@
   </div>
   <div class="col-md-9">
     <div class="mat-elevation-z8">
-      <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      <mat-form-field appearance="outline">
+        <mat-label>Ara</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
       </mat-form-field>
       <table mat-table [dataSource]="dataSource" matSort>
     
-        <!-- ID Column --> ['name', 'birthDay', 'gender','whiteCollar','educationstring','departmenAppliedFor','formStatusString'];
+       
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Ad Soyad</th>
           <td mat-cell *matCellDef="let row"> {{row.name+" "+row.surname}} </td>
@@ -64,9 +64,9 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header> doğum Günü </th>
           <td mat-cell *matCellDef="let row"> {{row.birthDay|date :"d/M/YYYY "}} </td>
         </ng-container>
-        <ng-container matColumnDef="gender">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cinsiyet </th>
-          <td mat-cell *matCellDef="let row"> {{row.gender|gender}} </td>
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Başvuru Tarihi </th>
+          <td mat-cell *matCellDef="let row"> {{row.createdAt|date:"dd/M/YY HH:mm"}} </td>
         </ng-container>
     
         <!-- Name Column -->
@@ -89,8 +89,12 @@
           <td mat-cell *matCellDef="let row"> {{row.formStatusString}} </td>
         </ng-container>
         <ng-container matColumnDef="Cv">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Aday Cv'si </th>
-          <td mat-cell *matCellDef="let row"> <div *ngFor="let item of row.files"><button style="margin-top: 5px;"  class="btn btn-success"><a  [href]="'https://localhost:7083/'+item.path" style="border: none; text-decoration: none;color: aliceblue;"  download>{{item.fileName}}</a> </button></div></td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cv </th>
+          <td mat-cell *matCellDef="let row"> <div *ngFor="let item of row.files" ><a [href]="'https://localhost:7083/'+item.path"><img height="25px" width="25px"  src="./assets/file.png" alt=""></a></div></td>
+        </ng-container>
+        <ng-container matColumnDef="detail">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Detay </th>
+          <td mat-cell *matCellDef="let row"><a ><img [routerLink]="'detail/'+row.id" height="25px" width="25px" src="./assets/loupe.png" style="cursor: pointer;" alt=""></a></td>
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

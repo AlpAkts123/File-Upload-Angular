@@ -1,127 +1,142 @@
-<body >
+<body>
     <div class="container">
-            <div class="main-body">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
-                                    <div class="mt-3">
-                                        <h4>{{form.name+" "+form.surname}}</h4>
-                                        
-                                    </div>
+        <div class="main-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+                                    alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                <div class="mt-3">
+                                    <h4>{{form.name+" "+form.surname}}</h4>
+
                                 </div>
-                                <hr class="my-4">
-                                <div align="center" *ngFor="let item of form.files">
-                                    <h3 > CV Dosyası</h3>
-                                    <p  style="color:aliceblue;background-color: rgb(68, 231, 18);cursor: pointer; height: 50px;text-align: center;padding-top: 10px; border-radius: 10px;" > {{item.fileName}} </p>
+                            </div>
+                            <hr class="my-4">
+                            <div align="center" *ngFor="let item of form.files">
+                                <h3> CV Dosyası</h3>
+                                <a [href]="'https://localhost:7083/'+item.path">
+                                    <p
+                                        style="color:aliceblue;background-color: rgb(68, 231, 18);cursor: pointer; height: 50px;text-align: center;padding-top: 10px; border-radius: 10px;">
+                                        {{item.fileName}} </p>
                                     <hr class="my-4">
-                                </div>
-                               
-                                <div>
-                                    
+                                </a>
+                            </div>
+
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <div class="mt-3">
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Doğum günü</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" [value]="form.birthDay|date :'dd/M/YYY'" disabled>
-                                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Doğum günü</h6>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Başvurulan Genel Departman</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" [value]="form.whiteCollar|whitecollar" disabled>
-                                    </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" [value]="form.birthDay|date :'dd/M/YYY'"
+                                        disabled>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Başvurulan Departman</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" [value]="form.departmentName" disabled>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3"><h6> Eğitim Durumu</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" [value]="form.educationstring" disabled>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Cinsiyet</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" [value]="form.gender|gender"  disabled>
-                                    </div>
-                                </div>
-                                
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Tecil Tarihi</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary" >
-                                        <input type="text" class="form-control" [value]="form.militaryServiceDelayTime|date"  disabled>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Başvuru Tarihi</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" [value]="form.createdAt"  disabled>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Başvuru Durumu</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" [value]="form.formStatusString"  disabled>
-                                    </div>
-                                </div>
-                              
-                               
                             </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Başvurulan Genel Departman</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" [value]="form.whiteCollar|whitecollar"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Başvurulan Departman</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" [value]="form.departmentName" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6> Eğitim Durumu</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" [value]="form.educationstring" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Cinsiyet</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" [value]="form.gender|gender" disabled>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Tecil Tarihi</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" [value]="form.militaryServiceDelayTime|date"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Başvuru Tarihi</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" [value]="form.createdAt|date:'dd/MM/YY HH:mm'" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Başvuru Durumu</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" [value]="form.formStatusString" disabled>
+                                </div>
+                            </div>
+
+
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="d-flex align-items-center mb-3">Project Status</h5>
-                                        <p>Web Design</p>
-                                        <div class="progress mb-3" style="height: 5px">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="d-flex align-items-center mb-3">Aday Notları</h3>
+                                    <div class="col-sm-12" *ngFor="let item of form.cancidateNotes">
+                                        <p><b style="color: rgb(12, 88, 187);"> Not Tarihi :</b> {{item.createdAt|date : "dd/MM/YY HH:mm" }}</p>
+                                        <mat-divider></mat-divider>
+                                        <div class=" mb-3" >
+                                            <p>{{item.description}}</p><span><button class="btn btn-warning">Sil</button> </span>
                                         </div>
-                                        <p>Website Markup</p>
-                                        <div class="progress mb-3" style="height: 5px">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p>One Page</p>
-                                        <div class="progress mb-3" style="height: 5px">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p>Mobile Template</p>
-                                        <div class="progress mb-3" style="height: 5px">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <p>Backend API</p>
-                                        <div class="progress" style="height: 5px">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
+                                        <mat-divider></mat-divider>
                                     </div>
+                                    
+                                    
+                                      <div class="mb-3">
+                                        <textarea class="form-control"  rows="3" #description></textarea>
+                                      </div>
+                                      <div class="mb-3">
+                                        <button class="btn btn-primary"(click)="sendNote(description)" > Not Ekle</button>
+
+                                      </div>
                                 </div>
                             </div>
                         </div>
@@ -129,31 +144,34 @@
                 </div>
             </div>
         </div>
-    
+    </div>
+
     <style type="text/css">
-    body{
-        background: #f7f7ff;
-        margin-top:20px;
-    }
-    .card {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: #fff;
-        background-clip: border-box;
-        border: 0 solid transparent;
-        border-radius: .25rem;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
-    }
-    .me-2 {
-        margin-right: .5rem!important;
-    }
+        body {
+            background: #f7f7ff;
+            margin-top: 20px;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 0 solid transparent;
+            border-radius: .25rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+        }
+
+        .me-2 {
+            margin-right: .5rem !important;
+        }
     </style>
-    
+
     <script type="text/javascript">
-    
+
     </script>
-    </body>
+</body>

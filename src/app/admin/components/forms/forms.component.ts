@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./forms.component.scss']
 })
 export class FormsComponent {
-  displayedColumns: string[] = ['name', 'birthDay', 'gender','whiteCollar','educationstring','departmenAppliedFor','formStatusString','Cv'];
+  displayedColumns: string[] = ['name', 'birthDay','whiteCollar','educationstring','departmenAppliedFor','createdAt','formStatusString','Cv','detail'];
   Forms:GetAllFormsModel=new GetAllFormsModel();
   dataSource: MatTableDataSource<ApplyForm>;
   dynamicQuery:DynamicQueryModel=new DynamicQueryModel();
@@ -62,7 +62,7 @@ constructor(private httpService:HttpClient,private toastr:NotificationService) {
     })
   }
   getFilteredData(maindep:MatSelect,dep,edState,after,before){
-    this.dynamicQuery.dynamic.sort.push({dir:"asc",field:"createdAt"})
+    this.dynamicQuery.dynamic.sort.push({dir:"desc",field:"createdAt"})
     debugger
 
     if (maindep.value!="") {

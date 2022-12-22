@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxFileDropModule } from 'ngx-file-drop';
-
+import { QRCodeModule } from 'angularx-qrcode';
 import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     NgxFileDropModule,
     FormsModule,
+    QRCodeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],

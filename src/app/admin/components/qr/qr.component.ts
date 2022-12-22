@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./qr.component.scss']
 })
 export class QrComponent {
+   myAngularxQrCode: string = null;
 
+  constructor () {
+    // assign a value
+    this.myAngularxQrCode = 'NABER MİNİK KIZ';
+  }
 }

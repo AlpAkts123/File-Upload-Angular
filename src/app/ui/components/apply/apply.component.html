@@ -88,8 +88,8 @@
             <mat-form-field appearance="outline">
               <mat-label>Eğitim Durumu</mat-label>
               <mat-select formControlName="educationState">
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                  {{food.viewValue}}
+                <mat-option *ngFor="let item of selectboxes.educationState|keyvalue" [value]="item.key">
+                  {{item.value}}
                 </mat-option>
               </mat-select>
             </mat-form-field>

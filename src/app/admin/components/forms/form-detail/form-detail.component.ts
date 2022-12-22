@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./form-detail.component.scss']
 })
 export class FormDetailComponent implements OnInit {
+  noteModel:NoteModel=new NoteModel();
   id:string;
   form:ApplyForm=new ApplyForm();
   constructor(private httpService:HttpClient,private notify:NotificationService,private router:ActivatedRoute) {
@@ -27,8 +28,25 @@ export class FormDetailComponent implements OnInit {
       Object.assign(this.form,response.applyForm)
       console.log(this.form)
     },(error:HttpErrorResponse)=>{
-      
       this.notify.message(error.message,"Hata",{messageType:ToastrMessageType.Error, position:ToastrPosition.TopCenter,timeout:2500})
     })
   }
+  sendNote(description){
+    if (description.value) {
+      this.noteModel.description=description.value;
+      this.noteModel.id=this.id;
+    this.httpService.post(environment.getApiUrl+"/Forms/CreateNote",this.noteModel).subscribe(response=>{
+      this.notify.message("Not Boş olamaz!","Hata",{messageType:ToastrMessageType.Success, position:ToastrPosition.TopCenter,timeout:2500})
+      this.getForm();
+    })
+      
+    }else{
+      this.notify.message("Not Boş olamaz!","Hata",{messageType:ToastrMessageType.Error, position:ToastrPosition.TopCenter,timeout:2500})
+
+    }
+  }
+}
+export class NoteModel{
+  id:string;
+  description:string;
 }
