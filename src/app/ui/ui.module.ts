@@ -11,6 +11,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+
 const routes:Routes=[{path:"",component:UiComponent},{path:"apply",component:ApplyComponent}]
 
 @NgModule({

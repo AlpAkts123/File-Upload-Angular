@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
-import { FileuploadComponent } from './fileupload/fileupload.component';
 import { UiComponent } from './ui/ui.component';
 
 const routes: Routes = [
@@ -12,7 +11,6 @@ const routes: Routes = [
   import("./admin/admin.module").then(module=>module.AdminModule),
   
 },
-{path:"fileUpload",component:FileuploadComponent}
 ];
 
 @NgModule({
